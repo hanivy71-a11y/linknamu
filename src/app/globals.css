@@ -3,11 +3,19 @@
 @tailwind utilities;
 
 @layer base {
+  /* 크림 → 연한 살구색의 따뜻한 그라데이션. 위쪽에 은은한 빛 번짐을 하나 더 얹는다. */
   body {
-    @apply min-h-dvh bg-gradient-to-b from-slate-50 to-sky-100 bg-fixed text-slate-800;
+    @apply min-h-dvh bg-fixed text-stone-800;
+    background-image:
+      radial-gradient(60rem 40rem at 50% -10%, rgb(255 255 255 / 0.7), transparent 60%),
+      linear-gradient(180deg, #fffaf2 0%, #fdeedf 55%, #f9dcc8 100%);
+    letter-spacing: -0.01em;
   }
 
   .dark body {
-    @apply from-slate-950 to-slate-900 text-slate-100;
+    @apply text-stone-100;
+    background-image:
+      radial-gradient(60rem 40rem at 50% -10%, rgb(255 190 150 / 0.08), transparent 60%),
+      linear-gradient(180deg, #1c1714 0%, #221a16 55%, #2b1e18 100%);
   }
 }

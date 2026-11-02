@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans_KR } from "next/font/google";
+import localFont from "next/font/local";
 import { themeInitScript } from "@/components/ThemeToggle";
 import { profile } from "@/data/profile";
 import "./globals.css";
 
-const plexSansKr = IBM_Plex_Sans_KR({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
+// Pretendard 가변 폰트(pretendard 패키지)를 직접 번들해 외부 CDN 없이 쓴다.
+const pretendard = localFont({
+  src: "../../node_modules/pretendard/dist/web/variable/woff2/PretendardVariable.woff2",
+  weight: "45 920",
   display: "swap",
   variable: "--font-sans",
 });
@@ -23,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     // 테마 스크립트가 렌더링 전에 class="dark"를 붙이므로 하이드레이션 경고를 끈다.
-    <html lang="ko" suppressHydrationWarning className={plexSansKr.variable}>
+    <html lang="ko" suppressHydrationWarning className={pretendard.variable}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>

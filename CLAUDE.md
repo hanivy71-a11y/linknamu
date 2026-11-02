@@ -46,7 +46,7 @@ Linktree처럼 내 모든 링크를 한 페이지에 모아두고
 - **DB 없이도 동작해야 한다.** `MONGODB_URI`가 없으면 `getMongoClient()`가 `null`을 반환하고, 페이지는 클릭 수 표시 없이 렌더링되며 POST는 503을 돌려준다. 조회 실패도 빈 객체로 처리해 페이지가 깨지지 않게 한다. MongoClient는 핫 리로드 중 연결이 쌓이지 않도록 `globalThis`에 캐시한다.
 - `src/app/page.tsx`는 `force-dynamic` 서버 컴포넌트로, 요청마다 클릭 수를 읽어 카드에 초기값으로 넘긴다.
 - **다크 모드:** Tailwind `darkMode: "class"`. `ThemeToggle.tsx`의 `themeInitScript`가 `layout.tsx`의 `<head>`에서 렌더링 전에 실행되어 localStorage(`linknamu-theme`) 또는 OS 설정으로 `<html class="dark">`를 붙인다. 그래서 `<html>`에 `suppressHydrationWarning`이 있다. 색은 Tailwind 유틸리티의 `dark:` 변형으로 지정한다.
-- 폰트는 `next/font/google`의 IBM Plex Sans KR을 `--font-sans` 변수로 주입하고 `tailwind.config.ts`의 `fontFamily.sans`에서 쓴다.
+- 폰트는 `pretendard` 패키지의 가변 폰트를 `next/font/local`로 불러 `--font-sans` 변수로 주입하고 `tailwind.config.ts`의 `fontFamily.sans`에서 쓴다.
 
 ## 환경 변수
 

@@ -33,7 +33,7 @@ export default function ThemeToggle() {
       onClick={toggle}
       aria-label={label}
       title={label}
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white/70 text-slate-600 backdrop-blur transition hover:border-sky-300 hover:text-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 dark:border-slate-700 dark:bg-slate-800/70 dark:text-slate-300 dark:hover:text-sky-400"
+      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/45 text-stone-500 backdrop-blur-xl transition duration-300 hover:bg-white/70 hover:text-stone-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300 dark:border-white/10 dark:bg-white/[0.06] dark:text-stone-300 dark:hover:bg-white/[0.1]"
     >
       {/* 마운트 전에는 테마를 모르므로 아이콘을 비워 두어 하이드레이션 불일치를 피한다. */}
       {theme === "dark" && (
