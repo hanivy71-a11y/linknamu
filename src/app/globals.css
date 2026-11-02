@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply min-h-dvh bg-gradient-to-b from-slate-50 to-sky-100 bg-fixed text-slate-800;
+  }
+
+  .dark body {
+    @apply from-slate-950 to-slate-900 text-slate-100;
+  }
+}
