@@ -17,15 +17,18 @@ export async function incrementClick(linkId: string): Promise<boolean> {
   return true;
 }
 
-/** 링크 id별 클릭 수. DB가 없거나 연결에 실패하면 빈 객체를 반환해 페이지가 깨지지 않게 한다. */
-export async function getClickCounts(): Promise<Record<string, number>> {
+/**
+ * 링크 id별 클릭 수. 한 번도 클릭되지 않은 링크는 키가 없다.
+ * DB가 설정되지 않았거나 연결에 실패하면 null을 반환한다(호출하는 쪽이 클릭 수 표시를 끈다).
+ */
+export async function getClickCounts(): Promise<Record<string, number> | null> {
   try {
     const collection = await clicksCollection();
-    if (!collection) return {};
+    if (!collection) return null;
     const docs = await collection.find().toArray();
     return Object.fromEntries(docs.map((doc) => [doc._id, doc.count]));
   } catch (error) {
     console.error("[clicks] 클릭 수를 불러오지 못했습니다:", error);
-    return {};
+    return null;
   }
 }

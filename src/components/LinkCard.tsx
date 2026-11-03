@@ -1,16 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import type { LinkItem } from "@/data/profile";
 
 type Props = {
   link: LinkItem;
-  initialCount?: number;
+  /** 표시할 클릭 수. undefined면 표시하지 않는다. */
+  count?: number;
+  onClick?: () => void;
 };
 
-export default function LinkCard({ link, initialCount }: Props) {
-  const [count, setCount] = useState(initialCount);
-
+export default function LinkCard({ link, count, onClick }: Props) {
   function recordClick() {
     // 페이지를 떠나는 중에도 요청이 끝까지 전송되도록 sendBeacon을 쓴다.
     const body = new Blob([JSON.stringify({ id: link.id })], { type: "application/json" });
@@ -18,7 +17,7 @@ export default function LinkCard({ link, initialCount }: Props) {
     if (!sent) {
       fetch("/api/clicks", { method: "POST", body, keepalive: true }).catch(() => {});
     }
-    if (count !== undefined) setCount(count + 1);
+    onClick?.();
   }
 
   return (

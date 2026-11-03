@@ -4,8 +4,13 @@ import { getClickCounts, incrementClick } from "@/lib/clicks";
 
 export const dynamic = "force-dynamic";
 
+// 페이지가 열릴 때 모든 링크의 클릭 수를 한 번에 가져간다: { "github": 42, ... }
 export async function GET() {
-  return NextResponse.json(await getClickCounts());
+  const counts = await getClickCounts();
+  if (!counts) {
+    return NextResponse.json({ error: "클릭 수를 불러올 수 없습니다." }, { status: 503 });
+  }
+  return NextResponse.json(counts, { headers: { "Cache-Control": "no-store" } });
 }
 
 // 링크 카드가 navigator.sendBeacon으로 { id } 를 보낸다.
